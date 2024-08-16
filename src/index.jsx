@@ -1,0 +1,28 @@
+import { HashRouter, Route } from '@solidjs/router';
+import { createRenderer, Config } from '@lightningtv/solid';
+
+import coreExtensionModuleUrl from './AppCoreExtensions.js?importChunkUrl';
+import App from './pages/App';
+import HomePage from './pages/HomePage';
+
+Config.debug = true;
+Config.fontSettings.fontFamily = 'Ubuntu';
+Config.fontSettings.color = 0xffffffff;
+Config.rendererOptions = {
+  coreExtensionModule: coreExtensionModuleUrl,
+  numImageWorkers: 2,
+  // Set the resolution based on window height
+  // 720p = 0.666667, 1080p = 1, 1440p = 1.5, 2160p = 2
+  deviceLogicalPixelRatio: window.innerHeight / 1080,
+  enableInspector: true,
+  // Increase to preload images coming from offscreen
+  boundsMargin: 20,
+};
+
+const { renderer, render } = createRenderer();
+
+render(() => (
+  <HashRouter root={App}>
+    <Route path='/' component={HomePage} />
+  </HashRouter>
+));
