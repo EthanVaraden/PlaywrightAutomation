@@ -29,6 +29,12 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    proxy: {
+      server: 'http://10.100.26.34:8080',
+      username: 'ethan.varaden',
+      password: 'Alvin@21051974',
+      bypass: 'localhost',
+    },
   },
 
   /* Configure projects for major browsers */

@@ -17,11 +17,9 @@
  * limitations under the License.
  */
 
-import {
-  CoreExtension,
-  WebTrFontFace,
-  SdfTrFontFace,
-} from '@lightningjs/renderer/core';
+import { WebTrFontFace, SdfTrFontFace } from '@lightningjs/renderer';
+
+import CoreExtension from '@lightningjs/renderer/core';
 
 export default class AppCoreExtension extends CoreExtension {
   async run(stage) {
@@ -35,18 +33,18 @@ export default class AppCoreExtension extends CoreExtension {
         'msdf',
         stage,
         'fonts/Ubuntu-Bold.msdf.png',
-        'fonts/Ubuntu-Bold.msdf.json',
-      ),
+        'fonts/Ubuntu-Bold.msdf.json'
+      )
     );
     stage.fontManager.addFontFace(
       new SdfTrFontFace(
-        "Ubuntu",
+        'Ubuntu',
         { weight: 400 },
-        "msdf",
+        'msdf',
         stage,
-        "fonts/Ubuntu-Regular.msdf.png",
-        "fonts/Ubuntu-Regular.msdf.json",
-      ),
+        'fonts/Ubuntu-Regular.msdf.png',
+        'fonts/Ubuntu-Regular.msdf.json'
+      )
     );
   }
 }
