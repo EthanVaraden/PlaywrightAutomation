@@ -36,3 +36,11 @@ test("go to todo page", async ({ page }) => {
   await expect(page).toHaveScreenshot({ maxDiffPixels: 10 });
   await expect(page.getByTestId("todo-title")).toHaveText(["EAT GRAPEFRUIT"]);
 });
+
+test("enter key press", async ({ page }) => {
+  await page.goto("https://demo.playwright.dev/todomvc");
+  const newTodo = page.getByPlaceholder("What needs to be done?");
+  await newTodo.fill("EAT GRAPE");
+  await newTodo.press("Enter");
+  await expect(page.getByTestId("todo-title")).toHaveText(["EAT GRAPE"]);
+});
