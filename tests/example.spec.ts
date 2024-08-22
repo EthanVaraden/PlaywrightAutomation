@@ -1,5 +1,6 @@
 import test from "@playwright/test";
 import { expect } from "@playwright/test";
+import { text } from 'stream/consumers';
 
 test("has title", async ({ page }) => {
   await page.goto("https://playwright.dev/");
@@ -64,6 +65,30 @@ test('testing color',async ({page})=>{
   await page.goto("https://playwright.dev/");
   const title = await page.getByRole('link', { name: '.NET' })
   await expect(title).toHaveCSS("color", "#45BA4B")
+})
+
+test('grab all text elements',async ({page})=>{
+  await page.goto("https://playwright.dev/");
+const textItems = await page.getByText('Playwright').all()
+console.log(textItems)
+})
+
+test('grab all elements on a page',async ({page})=>{
+  await page.goto("https://demo.playwright.dev/todomvc");
+const result = await page.content()
+console.log(result)
+})
+
+test('testing video playback',async ({page})=>{
+  await page.goto("https://maitv-vod.lab.eyevinn.technology/VINN.mp4/master.m3u8")
+  const videolocator = page.locator('video')
+  console.log(videolocator)
+})
+
+test('screenshot of specific element',async ({page})=>{
+  await page.goto("https://demo.playwright.dev/todomvc");
+  await expect(page.locator)
+  
 })
 
 
