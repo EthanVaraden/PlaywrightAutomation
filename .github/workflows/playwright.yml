@@ -17,6 +17,8 @@ jobs:
           node-version: 20.13.1
       - name: Install dependencies
         run: npm ci
+      - name: Install PLaywright Browsers
+        run: npx playwright install --with-deps
       - name: Run your tests
         run: npx playwright test
         env:
