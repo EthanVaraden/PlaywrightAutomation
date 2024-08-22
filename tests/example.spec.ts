@@ -23,7 +23,7 @@ test("get started link", async ({ page }) => {
 });
 
 test("go to home page", async ({ page }) => {
-  await page.goto("http://localhost:5173/#/");
+  await page.goto("https://lightning-js.github.io/solid-demo-app/#/");
 });
 
 test("go to todo page", async ({ page }) => {
@@ -44,3 +44,26 @@ test("enter key press", async ({ page }) => {
   await newTodo.press("Enter");
   await expect(page.getByTestId("todo-title")).toHaveText(["EAT GRAPE"]);
 });
+
+test('testing bounding box',async ({page}) =>{
+  await page.goto("https://demo.playwright.dev/todomvc");
+  const newTodo = await page.getByPlaceholder("What needs to be done?").boundingBox();
+  console.log(newTodo)
+})
+
+test('test properties of component using evaluate',async ({page})=>{
+  await page.goto("https://demo.playwright.dev/todomvc");
+  const title = await page.getByRole("heading",{name:'todos'})
+ // console.log(title)
+  await title.evaluate((ele)=>{
+      console.log(ele.textContent)
+  })
+})
+
+test('testing color',async ({page})=>{
+  await page.goto("https://playwright.dev/");
+  const title = await page.getByRole('link', { name: '.NET' })
+  await expect(title).toHaveCSS("color", "#45BA4B")
+})
+
+
